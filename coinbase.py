@@ -22,16 +22,21 @@ for cur in settings.keys():
 		price = float(r.get(url).json()['data']['amount'])
 
 		if test or (settings[cur]['bounds'][0] and price <= settings[cur]['bounds'][0]):
-			print(price, ' lower than ', settings[cur]['bounds'][0])
+			print(cur, price, ' lower than ', settings[cur]['bounds'][0])
 			if test or (last_alert and datetime.now()-timedelta(hours=24) <= last_alert):
-				print('should notify', last_alert)
+				print(cur,'should notify', last_alert)
 				settings[cur]['last_alert'] = str(datetime.now())
 				push = pb.push_note("Crypto Alert: Time to buy", "{} trading at {} (below {})".format(cur,price,settings[cur]['bounds'][0]))
 
 		elif settings[cur]['bounds'][1] and price >= settings[cur]['bounds'][1]:
-			print(price, ' higher than ', settings[cur]['bounds'][1])
+			print(cur, price, ' higher than ', settings[cur]['bounds'][1])
+			if test or (last_alert and datetime.now()-timedelta(hours=24) <= last_alert):
+				print(cur,'should notify', last_alert)
+				settings[cur]['last_alert'] = str(datetime.now())
+				push = pb.push_note("Crypto Alert: Time to sell", "{} trading at {} (above {})".format(cur,price,settings[cur]['bounds'][0]))
+
 		else:
-			print(price)
+			print(cur, price)
 
 #write it back to the file
 with open('settings.json', 'w') as f:
