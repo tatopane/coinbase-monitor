@@ -15,4 +15,5 @@
 "XLM": {"bounds": [0.25, null]}, 
 "CGLD": {"bounds": [2, null]}, 
 "NMR": {"bounds": [30, null]}, 
-"AGLD": {"bounds": [2.5, null]}}
+"AGLD": {"bounds": [2.5, null]},
+"WLUNA": {"bounds": [32, null]}}
