@@ -36,7 +36,7 @@ for cur in settings.keys():
 				push = pb.push_note("Crypto Alert: Time to sell", "{} trading at {} (above {})".format(cur,price,settings[cur]['bounds'][0]))
 
 		else:
-			print(cur, price)
+			print(cur, price, str(datetime.now()))
 
 #write it back to the file
 with open('settings.json', 'w') as f:
